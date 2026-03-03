@@ -171,6 +171,7 @@
       animation-duration: 4.8s;
       opacity: .75;
     }
+   
     @keyframes sweepMove{
       0%   { transform: translateX(-80%) rotate(18deg); }
       55%  { transform: translateX(220%) rotate(18deg); }
@@ -324,6 +325,56 @@
     .logo-card img:hover{ filter: grayscale(0%); opacity: 1; transform: translateY(-2px); }
     @media(min-width: 1024px){ .logo-card{ width: 210px; height: 82px; } .logo-card img{ max-height: 30px; } }
 
+/* GALERIA ESTÁTICA — PARCEIROS */
+.partners-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+@media(min-width: 640px){
+  .partners-grid{ grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+@media(min-width: 1024px){
+  .partners-grid{ grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+}
+
+/* Reaproveita o visual do seu logo-card, só que “parado” */
+.partners-grid .logo-card{
+  width: 100%;
+  height: 86px;
+  border-radius: 18px;
+  padding: 14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border: none; /* sem borda externa */
+  background: rgba(255,255,255,.06);
+  backdrop-filter: blur(10px);
+  transition: transform .18s ease, background .18s ease;
+}
+
+.partners-grid .logo-card:hover{
+  transform: translateY(-2px);
+  background: rgba(255,255,255,.08);
+}
+
+/* Hover nas imagens (mantém sua ideia) */
+.partners-grid .logo-card img{
+  width: 150px;
+  height: 36px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: .85;
+  transition: all .25s ease;
+}
+
+.partners-grid .logo-card:hover img{
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
     /* FOOTER social */
     .social-btn{
       width: 44px; height: 44px; border-radius: 16px;
@@ -446,6 +497,65 @@
       color: rgba(226,232,240,.75);
       display:flex; align-items:center; gap:10px;
     }
+
+    /* =========================
+   MOBILE: abinhas + chat sólido
+   ========================= */
+@media (max-width: 520px){
+
+  /* stack no canto - fica mais “colado” */
+  .floating-stack{
+    right: 12px;
+    bottom: 14px;
+    gap: 10px;
+    align-items: flex-end;
+  }
+
+  /* transforma WhatsApp + Bot em “abinhas” */
+  .floating-stack > a,
+  .floating-stack > button{
+    width: auto !important;
+    height: 42px !important;
+    padding: 0 14px !important;
+    border-radius: 999px !important;
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 18px 60px rgba(0,0,0,.35);
+  }
+
+  /* ícones menores e centralizados */
+  .floating-stack > a i,
+  .floating-stack > button i{
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  /* (opcional) texto nas abinhas — se quiser, a gente coloca via JS/HTML */
+  /* .floating-stack > a::after{ content:"WhatsApp"; font-weight:900; font-size:11px; letter-spacing:.12em; text-transform:uppercase; } */
+  /* .floating-stack > button::after{ content:"Chat"; font-weight:900; font-size:11px; letter-spacing:.12em; text-transform:uppercase; } */
+
+  /* Chat no mobile: sólido (sem transparência) */
+  #chat-window{
+    background: #0b1222; /* sólido */
+    border-color: rgba(255,255,255,.12);
+  }
+
+  /* Topbar sólida */
+  .chat-topbar{
+    background: linear-gradient(135deg, rgba(249,115,22,1), rgba(249,115,22,.82));
+  }
+
+  /* Corpo do chat sólido (tira “ver através”) */
+  .chat-shell{
+    background: #0f172a !important;
+  }
+
+  /* Barra de sugestões e input sólidos */
+  #suggestion-bar{ background: #0b1222 !important; }
+  #chat-window .p-4.border-t{ background: #0b1222 !important; }
+}
   </style>
 </head>
 
@@ -622,44 +732,36 @@
     </section>
 
     <!-- HALL DE CLIENTES -->
-    <section class="pb-24">
-      <div class="container mx-auto px-6">
-        <div class="glass rounded-[2.5rem] p-10 sweep">
-          <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
-            <div>
-              <h3 class="text-3xl font-black text-white">Clientes <span class="text-orange-500">Atendidos</span></h3>
-              <p class="text-slate-400 mt-2">Grandes feitos nunca são obra de um só, mas o reflexo de uma parceria inabalável.</p>
-            </div>
-            <div class="text-slate-400 text-sm">
-              <span class="inline-flex items-center gap-2"><i data-lucide="badge-check" class="w-4 h-4 text-orange-400"></i> Qualidade • Prazo • Acabamento</span>
-            </div>
-          </div>
-
-          <div class="logo-marquee">
-            <div class="marquee-track">
-              <div class="logo-card"><img loading="lazy" decoding="async" src="parceiros/eletro.png" alt="Eletro"></div>
-              <div class="logo-card"><img loading="lazy" decoding="async" src="parceiros/skyfit.webp" alt="SkyFit"></div>
-              <div class="logo-card"><img loading="lazy" decoding="async" src="parceiros/melhoropcao.png" alt="Cliente 03"></div>
-              <div class="logo-card"><img loading="lazy" decoding="async" src="https://dummyimage.com/220x90/0b1220/ffffff&text=CLIENTE+04" alt="Supermercado Albuqurque"></div>
-              <div class="logo-card"><img loading="lazy" decoding="async" src="https://dummyimage.com/220x90/0b1220/ffffff&text=CLIENTE+05" alt="Cliente 05"></div>
-              <div class="logo-card"><img loading="lazy" decoding="async" src="https://dummyimage.com/220x90/0b1220/ffffff&text=CLIENTE+06" alt="Cliente 06"></div>
-              <div class="logo-card"><img loading="lazy" decoding="async" src="https://dummyimage.com/220x90/0b1220/ffffff&text=CLIENTE+07" alt="Cliente 07"></div>
-              <div class="logo-card"><img loading="lazy" decoding="async" src="https://dummyimage.com/220x90/0b1220/ffffff&text=CLIENTE+08" alt="Cliente 08"></div>
-
-              <div class="logo-card"><img loading="lazy" decoding="async" src="parceiros/eletro.png" alt="Eletro"></div>
-              <div class="logo-card"><img loading="lazy" decoding="async" src="parceiros/skyfit.webp" alt="SkyFit"></div>
-              <div class="logo-card"><img loading="lazy" decoding="async" src="parceiros/melhoropcao.png" alt="Hamburgueria Melhor Opcao"></div>
-              <div class="logo-card"><img loading="lazy" decoding="async" src="https://dummyimage.com/220x90/0b1220/ffffff&text=CLIENTE+04" alt="Cliente 04"></div>
-              <div class="logo-card"><img loading="lazy" decoding="async" src="https://dummyimage.com/220x90/0b1220/ffffff&text=CLIENTE+05" alt="Cliente 05"></div>
-              <div class="logo-card"><img loading="lazy" decoding="async" src="https://dummyimage.com/220x90/0b1220/ffffff&text=CLIENTE+06" alt="Cliente 06"></div>
-              <div class="logo-card"><img loading="lazy" decoding="async" src="https://dummyimage.com/220x90/0b1220/ffffff&text=CLIENTE+07" alt="Cliente 07"></div>
-              <div class="logo-card"><img loading="lazy" decoding="async" src="https://dummyimage.com/220x90/0b1220/ffffff&text=CLIENTE+08" alt="Cliente 08"></div>
-            </div>
-          </div>
-
+    <!-- HALL DE CLIENTES (GALERIA ESTÁTICA) -->
+<section class="pb-24">
+  <div class="container mx-auto px-6">
+    <div class="glass rounded-[2.5rem] p-10 sweep">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+        <div>
+          <h3 class="text-3xl font-black text-white">Clientes <span class="text-orange-500">Atendidos</span></h3>
+          <p class="text-slate-400 mt-2">Grandes feitos nunca são obra de um só, mas o reflexo de uma parceria inabalável.</p>
+        </div>
+        <div class="text-slate-400 text-sm">
+          <span class="inline-flex items-center gap-2"><i data-lucide="badge-check" class="w-4 h-4 text-orange-400"></i> Qualidade • Prazo • Acabamento</span>
         </div>
       </div>
-    </section>
+
+      <!-- Galeria -->
+      <div class="partners-grid">
+        <div class="logo-card" ><img loading="lazy" decoding="async" src="parceiros/eletro.png" alt="Eletro"></div>
+        <div class="logo-card"><img loading="lazy" decoding="async" src="parceiros/skyfit.webp" alt="SkyFit"></div>
+        <div class="logo-card"><img loading="lazy" decoding="async" src="parceiros/melhoropcao.png" alt="Melhor Opção"></div>
+
+        <div class="logo-card"><img loading="lazy" decoding="async" src="parceiros/parceiro4.png" alt="Parceiro 04"></div>
+        <div class="logo-card"><img loading="lazy" decoding="async" src="parceiros/parceiro5.png" alt="Parceiro 05"></div>
+        <div class="logo-card"><img loading="lazy" decoding="async" src="parceiros/parceiro6.png" alt="Parceiro 06"></div>
+        <div class="logo-card"><img loading="lazy" decoding="async" src="parceiros/parceiro7.png" alt="Parceiro 07"></div>
+        <div class="logo-card"><img loading="lazy" decoding="async" src="parceiros/parceiro8.png" alt="Parceiro 08"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
     <!-- FOOTER -->
     <footer class="pb-14">
@@ -768,16 +870,16 @@
             <input class="hp-field" type="text" name="website" tabindex="-1" autocomplete="off" />
 
             <input id="orcNome" name="nome" type="text" placeholder="Nome"
-              class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl outline-none focus:border-orange-500 transition text-white">
+              class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl outline-none focus:border-orange-500 transition text-white placeholder:text-orange-500">
 
             <input id="orcEmail" name="email" type="email" placeholder="E-mail"
-              class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl outline-none focus:border-orange-500 transition text-white">
+              class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl outline-none focus:border-orange-500 transition text-white placeholder:text-orange-500">
 
             <input id="orcTel" name="telefone" type="tel" placeholder="Telefone/WhatsApp (opcional)"
-              class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl outline-none focus:border-orange-500 transition text-white">
+              class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl outline-none focus:border-orange-500 transition text-white placeholder:text-orange-500">
 
             <select id="orcServico" name="servico"
-              class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl outline-none focus:border-orange-500 transition text-white">
+              class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl outline-none focus:border-orange-500 transition text-orange-500">
               <option value="" selected>Selecione o serviço</option>
               <option>Banner / Lona</option>
               <option>Fachada ACM</option>
@@ -789,10 +891,10 @@
             </select>
 
             <textarea id="orcDetalhes" name="detalhes" rows="5" placeholder="Detalhes do pedido (medidas, quantidade, prazo, região...)"
-              class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl outline-none focus:border-orange-500 transition text-white"></textarea>
+              class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl outline-none focus:border-orange-500 transition text-white placeholder:text-orange-500"></textarea>
 
             <input id="orcRef" name="referencia" type="url" placeholder="Link de referência (opcional) — Drive/WeTransfer/Instagram"
-              class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl outline-none focus:border-orange-500 transition text-white">
+              class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl outline-none focus:border-orange-500 transition text-white placeholder:text-orange-500">
 
             <button id="btnEnviarOrc" type="submit"
               class="w-full bg-orange-600 py-4 rounded-2xl font-bold hover:bg-orange-700 transition text-white">
